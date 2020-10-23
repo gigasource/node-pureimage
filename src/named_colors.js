@@ -1,6 +1,6 @@
 /**
  * Enumeration containing popular colors
- * @enum {string}
+ * @enum {Number}
  */
 var NAMED_COLORS = {
     transparent:           0x00000000,
