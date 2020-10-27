@@ -4,6 +4,7 @@ const PNG_LIB = require('pngjs')
 const PNG = PNG_LIB.PNG;
 const text = require('./text');
 const uint32 = require('./uint32');
+const NAMED_COLORS = require('./named_colors');
 
 /**
  * Create a new bitmap image
@@ -40,7 +41,7 @@ exports.encodePNGToStream = function (bitmap, outstream) {
       for (var j = 0; j < bitmap.height; j++) {
         var rgba = bitmap.getPixelRGBA(i, j);
         var n = (j * bitmap.width + i) * 4;
-        var bytes = uint32.getBytesBigEndian(rgba);
+        var bytes = rgba === NAMED_COLORS.white ? [255, 255, 255, 255] : [0, 0, 0, 255];
         for (var k = 0; k < 4; k++) {
           png.data[n + k] = bytes[k];
         }
